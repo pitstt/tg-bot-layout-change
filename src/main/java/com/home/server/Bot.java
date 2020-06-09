@@ -5,28 +5,17 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import java.io.IOException;
-import java.util.Properties;
 import java.util.logging.Level;
 
 import static org.telegram.telegrambots.logging.BotLogger.log;
 
 public class Bot extends TelegramLongPollingBot {
 
-    private String token;
+    private final String token;
 
     public Bot() {
-        Properties prop = new Properties();
-        try {
-            //load a properties file from class path, inside static method
-            prop.load(Bot.class.getClassLoader().getResourceAsStream("config.properties"));
-
-            //get the property value and print it out
-            token = prop.getProperty("token");
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        //Токен беру из переменной среды heroku
+        token = System.getenv("TOKEN");
     }
 
     /**
