@@ -14,7 +14,7 @@ public class Bot extends TelegramLongPollingBot {
     private final String token;
 
     public Bot() {
-        //Токен беру из переменной среды heroku
+        //Токен беру из переменной окружения heroku
         token = System.getenv("TOKEN");
     }
 
